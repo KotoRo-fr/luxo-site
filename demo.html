@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxo Demo | Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0f172a;
+            --navy-light: #1e293b;
+            --navy-lighter: #334155;
+            --gold: #d4af37;
+            --gold-light: #f0d878;
+            --gray-50: #f8fafc;
+            --gray-200: #e2e8f0;
+            --gray-600: #64748b;
+            --white: #ffffff;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--gray-50);
+            color: var(--navy);
+        }
+        
+        /* Header Demo */
+        .demo-header {
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-200);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .demo-header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .demo-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .demo-logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--navy);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-weight: 700;
+        }
+        
+        .demo-badge {
+            background: rgba(16,185,129,0.1);
+            color: var(--success);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .demo-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        /* Main Layout */
+        .demo-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 90px 24px 40px;
+            display: grid;
+            grid-template-columns: 260px 1fr 340px;
+            gap: 24px;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 24px;
+            height: fit-content;
+            position: sticky;
+            top: 90px;
+        }
+        
+        .sidebar-menu {
+            list-style: none;
+        }
+        
+        .sidebar-menu li {
+            margin-bottom: 8px;
+        }
+        
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--gray-600);
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .sidebar-menu a:hover,
+        .sidebar-menu a.active {
+            background: rgba(212,175,55,0.1);
+            color: var(--navy);
+        }
+        
+        .sidebar-menu a.active {
+            background: rgba(212,175,55,0.15);
+            color: var(--navy);
+            font-weight: 600;
+        }
+        
+        .sidebar-icon {
+            font-size: 1.2rem;
+        }
+        
+        /* Main Content */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        
+        .stat-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid var(--gray-200);
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--gray-600);
+            margin-bottom: 8px;
+        }
+        
+        .stat-value {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--navy);
+        }
+        
+        .stat-change {
+            font-size: 0.85rem;
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .stat-change.positive {
+            color: var(--success);
+        }
+        
+        /* Chart Card */
+        .chart-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid var(--gray-200);
+        }
+        
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .chart-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+        
+        .chart-period {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .chart-period button {
+            padding: 6px 12px;
+            border: 1px solid var(--gray-200);
+            background: var(--white);
+            border-radius: 6px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .chart-period button.active,
+        .chart-period button:hover {
+            background: var(--navy);
+            color: var(--white);
+            border-color: var(--navy);
+        }
+        
+        /* Simulated Chart */
+        .chart-area {
+            height: 200px;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            padding: 20px 0;
+            gap: 12px;
+        }
+        
+        .chart-bar {
+            flex: 1;
+            background: linear-gradient(to top, var(--gold), var(--gold-light));
+            border-radius: 6px 6px 0 0;
+            min-height: 30px;
+            position: relative;
+            transition: all 0.3s;
+        }
+        
+        .chart-bar:hover {
+            opacity: 0.8;
+        }
+        
+        .chart-bar-label {
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.75rem;
+            color: var(--gray-600);
+        }
+        
+        /* Activity List */
+        .activity-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid var(--gray-200);
+        }
+        
+        .activity-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .activity-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+        
+        .activity-filter {
+            padding: 6px 12px;
+            border: 1px solid var(--gray-200);
+            border-radius: 6px;
+            font-size: 0.85rem;
+            background: var(--white);
+        }
+        
+        .activity-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .activity-item {
+            display: flex;
+            gap: 16px;
+            padding: 16px;
+            background: var(--gray-50);
+            border-radius: 12px;
+            transition: all 0.2s;
+        }
+        
+        .activity-item:hover {
+            background: rgba(212,175,55,0.05);
+        }
+        
+        .activity-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+        
+        .activity-icon.qualifie { background: rgba(16,185,129,0.1); }
+        .activity-icon.rendez-vous { background: rgba(212,175,55,0.1); }
+        .activity-icon.message { background: rgba(59,130,246,0.1); }
+        
+        .activity-content {
+            flex: 1;
+        }
+        
+        .activity-text {
+            font-size: 0.95rem;
+            color: var(--navy);
+            margin-bottom: 4px;
+        }
+        
+        .activity-meta {
+            font-size: 0.8rem;
+            color: var(--gray-600);
+        }
+        
+        .activity-time {
+            font-size: 0.8rem;
+            color: var(--gray-600);
+            white-space: nowrap;
+        }
+        
+        /* Right Panel */
+        .right-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .panel-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid var(--gray-200);
+        }
+        
+        .panel-title {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* Lead Card */
+        .lead-card {
+            background: var(--gray-50);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            border-left: 3px solid var(--gold);
+        }
+        
+        .lead-name {
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 4px;
+        }
+        
+        .lead-source {
+            font-size: 0.8rem;
+            color: var(--gray-600);
+            margin-bottom: 8px;
+        }
+        
+        .lead-score {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+        }
+        
+        .score-bar {
+            flex: 1;
+            height: 6px;
+            background: var(--gray-200);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .score-fill {
+            height: 100%;
+            background: var(--success);
+            border-radius: 3px;
+        }
+        
+        .score-fill.high { background: var(--success); width: 85%; }
+        .score-fill.medium { background: var(--warning); width: 60%; }
+        
+        /* Chat Preview */
+        .chat-preview {
+            background: var(--gray-50);
+            border-radius: 12px;
+            padding: 16px;
+        }
+        
+        .chat-message {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        
+        .chat-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--navy);
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .chat-bubble {
+            background: var(--white);
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            max-width: 200px;
+        }
+        
+        .chat-bubble.luxo {
+            background: rgba(212,175,55,0.1);
+            margin-left: auto;
+        }
+        
+        .typing {
+            display: flex;
+            gap: 4px;
+            padding: 12px 14px;
+        }
+        
+        .typing-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--gray-600);
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+        
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+        
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-4px); }
+        }
+        
+        /* Demo Notice */
+        .demo-notice {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--navy);
+            color: var(--white);
+            padding: 16px 24px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            max-width: 320px;
+        }
+        
+        .demo-notice-title {
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .demo-notice-text {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 12px;
+        }
+        
+        .demo-notice-btn {
+            background: var(--gold);
+            color: var(--navy);
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-block;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .demo-container {
+                grid-template-columns: 1fr;
+            }
+            .sidebar,
+            .right-panel {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .demo-notice {
+                left: 20px;
+                right: 20px;
+                max-width: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="demo-header">
+        <div class="demo-header-content">
+            <div class="demo-logo">
+                <div class="demo-logo-icon">L</div>
+                <div>
+                    <div style="font-weight: 700; color: var(--navy);">Luxo</div>
+                    <div style="font-size: 0.8rem; color: var(--gray-600);">Dashboard Demo</div>
+                </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 20px;">
+                <div class="demo-badge">En ligne</div>
+                <a href="luxo-landing-page.html" style="color: var(--gray-600); text-decoration: none; font-weight: 500;">← Retour au site</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="demo-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <ul class="sidebar-menu">
+                <li><a href="#" class="active"><span class="sidebar-icon">📊</span> Tableau de bord</a></li>
+                <li><a href="#"><span class="sidebar-icon">👥</span> Prospects</a></li>
+                <li><a href="#"><span class="sidebar-icon">💬</span> Conversations</a></li>
+                <li><a href="#"><span class="sidebar-icon">📅</span> Rendez-vous</a></li>
+                <li><a href="#"><span class="sidebar-icon">📈</span> Statistiques</a></li>
+                <li><a href="#"><span class="sidebar-icon">⚙️</span> Configuration</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">Prospects ce mois</div>
+                    <div class="stat-value">47</div>
+                    <div class="stat-change positive">↑ +12% vs mois dernier</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Taux de qualification</div>
+                    <div class="stat-value">68%</div>
+                    <div class="stat-change positive">↑ +5% vs mois dernier</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">RDV confirmés</div>
+                    <div class="stat-value">23</div>
+                    <div class="stat-change positive">↑ +8 vs mois dernier</div>
+                </div>
+            </div>
+
+            <!-- Chart -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <div class="chart-title">Activité des conversations</div>
+                    <div class="chart-period">
+                        <button>7j</button>
+                        <button class="active">30j</button>
+                        <button>90j</button>
+                    </div>
+                </div>
+                <div class="chart-area">
+                    <div class="chart-bar" style="height: 45%;"><span class="chart-bar-label">Lun</span></div>
+                    <div class="chart-bar" style="height: 65%;"><span class="chart-bar-label">Mar</span></div>
+                    <div class="chart-bar" style="height: 55%;"><span class="chart-bar-label">Mer</span></div>
+                    <div class="chart-bar" style="height: 80%;"><span class="chart-bar-label">Jeu</span></div>
+                    <div class="chart-bar" style="height: 70%;"><span class="chart-bar-label">Ven</span></div>
+                    <div class="chart-bar" style="height: 40%;"><span class="chart-bar-label">Sam</span></div>
+                    <div class="chart-bar" style="height: 35%;"><span class="chart-bar-label">Dim</span></div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="activity-card">
+                <div class="activity-header">
+                    <div class="activity-title">Activité récente</div>
+                    <select class="activity-filter">
+                        <option>Tout voir</option>
+                        <option>Qualifiés</option>
+                        <option>Rendez-vous</option>
+                    </select>
+                </div>
+                <div class="activity-list">
+                    <div class="activity-item">
+                        <div class="activity-icon qualifie">✓</div>
+                        <div class="activity-content">
+                            <div class="activity-text"><strong>Thomas M.</strong> a été qualifié (score: 85/100)</div>
+                            <div class="activity-meta">Demande de devis • Artisan plaquiste</div>
+                        </div>
+                        <div class="activity-time">Il y a 5 min</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon rendez-vous">📅</div>
+                        <div class="activity-content">
+                            <div class="activity-text">Rendez-vous confirmé avec <strong>Sophie L.</strong></div>
+                            <div class="activity-meta">Jeudi 20 février • 14h00</div>
+                        </div>
+                        <div class="activity-time">Il y a 12 min</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon message">💬</div>
+                        <div class="activity-content">
+                            <div class="activity-text">Nouvelle conversation avec <strong>Marc D.</strong></div>
+                            <div class="activity-meta">Via WhatsApp • Question sur tarifs</div>
+                        </div>
+                        <div class="activity-time">Il y a 28 min</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon qualifie">✓</div>
+                        <div class="activity-content">
+                            <div class="activity-text"><strong>Julie R.</strong> a été qualifiée (score: 72/100)</div>
+                            <div class="activity-meta">Demande via formulaire • Consultante</div>
+                        </div>
+                        <div class="activity-time">Il y a 1h</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Right Panel -->
+        <aside class="right-panel">
+            <!-- Leads to Review -->
+            <div class="panel-card">
+                <div class="panel-title">🔥 Leads chauds</div>
+                <div class="lead-card">
+                    <div class="lead-name">Pierre Dubois</div>
+                    <div class="lead-source">Via formulaire web</div>
+                    <div class="lead-score">
+                        <span>Score:</span>
+                        <div class="score-bar"><div class="score-fill high"></div></div>
+                        <span style="font-weight: 600;">85%</span>
+                    </div>
+                </div>
+                <div class="lead-card">
+                    <div class="lead-name">Marie Laurent</div>
+                    <div class="lead-source">Via LinkedIn</div>
+                    <div class="lead-score">
+                        <span>Score:</span>
+                        <div class="score-bar"><div class="score-fill high"></div></div>
+                        <span style="font-weight: 600;">78%</span>
+                    </div>
+                </div>
+                <div class="lead-card">
+                    <div class="lead-name">Alexandre Petit</div>
+                    <div class="lead-source">Via WhatsApp</div>
+                    <div class="lead-score">
+                        <span>Score:</span>
+                        <div class="score-bar"><div class="score-fill medium"></div></div>
+                        <span style="font-weight: 600;">62%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Live Chat -->
+            <div class="panel-card">
+                <div class="panel-title">💬 Conversation en cours</div>
+                <div class="chat-preview">
+                    <div class="chat-message">
+                        <div class="chat-avatar">JD</div>
+                        <div class="chat-bubble">Bonjour, je cherche un devis pour une rénovation complète</div>
+                    </div>
+                    <div class="chat-message">
+                        <div class="chat-bubble luxo">Bonjour ! Je peux vous aider. Quelle est la surface approximative ?</div>
+                        <div class="chat-avatar" style="background: var(--gold); color: var(--navy);">L</div>
+                    </div>
+                    <div class="chat-message">
+                        <div class="chat-avatar">JD</div>
+                        <div class="chat-bubble">Environ 80m²</div>
+                    </div>
+                    <div class="chat-message" style="margin-bottom: 0;">
+                        <div class="chat-bubble luxo typing">
+                            <div class="typing-dot"></div>
+                            <div class="typing-dot"></div>
+                            <div class="typing-dot"></div>
+                        </div>
+                        <div class="chat-avatar" style="background: var(--gold); color: var(--navy);">L</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Time Saved -->
+            <div class="panel-card" style="background: linear-gradient(135deg, var(--navy), var(--navy-light)); color: white;">
+                <div class="panel-title" style="color: var(--gold-light);">⏱️ Temps économisé</div>
+                <div style="font-size: 2.5rem; font-weight: 800; margin-bottom: 8px;">12.5h</div>
+                <div style="opacity: 0.8; font-size: 0.9rem;">Cette semaine grâce à Luxo</div>
+                <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.1);">
+                    <div style="display: flex; justify-content: space-between; font-size: 0.85rem;">
+                        <span style="opacity: 0.7;">Ce mois:</span>
+                        <span style="font-weight: 600;">47h</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Demo Notice -->
+    <div class="demo-notice">
+        <div class="demo-notice-title">🎯 C'est une démo</div>
+        <div class="demo-notice-text">Ce tableau de bord est une simulation. Votre Luxo sera personnalisé selon VOTRE activité.</div>
+        <a href="luxo-landing-page.html#contact" class="demo-notice-btn">Configurer mon Luxo</a>
+    </div>
+</body>
+</html>

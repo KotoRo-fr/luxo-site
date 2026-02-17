@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxo | Votre Assistant Personnel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0f172a;
+            --navy-light: #1e293b;
+            --gold: #d4af37;
+            --gold-light: #f0d878;
+            --gray-50: #f8fafc;
+            --gray-200: #e2e8f0;
+            --gray-600: #64748b;
+            --white: #ffffff;
+            --success: #10b981;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--gray-600);
+        }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        
+        header {
+            background: var(--white);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--navy);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        
+        .logo-text {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--navy);
+        }
+        
+        .nav-cta {
+            background: var(--gold);
+            color: var(--navy);
+            padding: 14px 28px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+        }
+        
+        .hero {
+            padding: 180px 0 120px;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+            color: var(--white);
+        }
+        
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1.3fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(212,175,55,0.2);
+            border: 1px solid rgba(212,175,55,0.3);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--gold-light);
+            margin-bottom: 30px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+        
+        .hero h1 span {
+            color: var(--gold-light);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.35rem;
+            color: var(--gold-light);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        
+        .hero p {
+            font-size: 1.15rem;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+        
+        .btn {
+            padding: 18px 36px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.05rem;
+        }
+        
+        .btn-gold {
+            background: var(--gold);
+            color: var(--navy);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        
+        .hero-cta {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .services {
+            padding: 100px 0;
+            background: var(--gray-50);
+        }
+        
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+        
+        .section-header h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--navy);
+            margin-bottom: 20px;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .service-card {
+            background: var(--white);
+            padding: 45px 35px;
+            border-radius: 20px;
+            border: 1px solid var(--gray-200);
+        }
+        
+        .service-icon {
+            width: 65px;
+            height: 65px;
+            background: var(--gray-50);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 30px;
+        }
+        
+        .service-card h3 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 15px;
+        }
+        
+        .service-features {
+            list-style: none;
+            margin-top: 20px;
+        }
+        
+        .service-features li {
+            padding: 10px 0;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .service-features li::before {
+            content: '✓';
+            color: var(--gold);
+            font-weight: 700;
+        }
+        
+        .pricing {
+            padding: 100px 0;
+            background: var(--navy);
+            color: var(--white);
+        }
+        
+        .pricing .section-header h2 {
+            color: var(--white);
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .pricing-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 50px 40px;
+        }
+        
+        .pricing-card.featured {
+            background: var(--white);
+            color: #1e293b;
+        }
+        
+        .price {
+            font-size: 4rem;
+            font-weight: 800;
+            margin: 25px 0;
+        }
+        
+        .price span {
+            font-size: 1rem;
+            opacity: 0.7;
+        }
+        
+        .pricing-features li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .pricing-card.featured .pricing-features li {
+            border-color: var(--gray-200);
+        }
+        
+        .pricing-features li::before {
+            content: '✓';
+            color: var(--gold);
+            font-weight: 700;
+        }
+        
+        .btn-pricing {
+            width: 100%;
+            text-align: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .cta {
+            padding: 100px 0;
+            background: var(--gold);
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--navy);
+            margin-bottom: 20px;
+        }
+        
+        footer {
+            background: var(--navy);
+            color: var(--white);
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid var(--gray-200);
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(212,175,55,0.1);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .btn-submit {
+            width: 100%;
+            background: var(--navy);
+            color: var(--white);
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            justify-content: center;
+        }
+        
+        .btn-submit:hover {
+            background: var(--navy-light);
+        }
+        
+        .form-note {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: var(--gray-600);
+        }
+        
+        @media (max-width: 600px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            .contact-form {
+                padding: 25px;
+            }
+        }
+        
+        @media (max-width: 968px) {
+            .hero-content,
+            .services-grid,
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 { font-size: 2.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">
+                <div class="logo-icon">L</div>
+                <span class="logo-text">Luxo</span>
+            </a>
+            <div style="display: flex; gap: 15px; align-items: center;">
+                <a href="demo.html" style="color: var(--navy); text-decoration: none; font-weight: 600;">Démo</a>
+                <a href="#pricing" class="nav-cta">Commencer maintenant</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div>
+                    <span class="hero-badge">✓ Sans engagement • Évolution comprise</span>
+                    <h1>Votre assistant personnel <span>qui vous fait gagner 15h par semaine</span></h1>
+                    <p class="hero-subtitle">Luxo est votre assistant IA personnalisé et multitâche.</p>
+                    <p>Il qualifie vos leads, gère vos conversations et vous libère du temps. Vous gardez le contrôle via une interface simple. Pas de jargon technique, juste des résultats.</p>
+                    <div class="hero-cta">
+                        <a href="#contact" class="btn btn-gold">Essayer Luxo gratuitement</a>
+                        <a href="demo.html" class="btn btn-outline">Voir la démo</a>
+                    </div>
+                </div>
+                <div style="background: rgba(255,255,255,0.05); padding: 40px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); text-align: center;">
+                    <div style="font-size: 4rem; margin-bottom: 20px;">🤵</div>
+                    <div style="font-size: 1.5rem; font-weight: 700; color: var(--gold-light); margin-bottom: 10px;">Luxo travaille pour vous</div>
+                    <div style="opacity: 0.9; font-size: 0.95rem;">✓ 12 devis traités<br>✓ 8 prospects qualifiés<br>✓ 3 RDV confirmés</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Ce que Luxo fait pour vous</h2>
+                <p>Un assistant multitâche qui s'adapte à VOTRE métier avec des questions personnalisées</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">📧</div>
+                    <h3>Qualification de devis</h3>
+                    <p>Luxo répond à vos demandes de devis et pose les questions adaptées à VOTRE activité pour qualifier chaque prospect.</p>
+                    <ul class="service-features">
+                        <li>Questions personnalisées votre métier</li>
+                        <li>Scoring sur mesure (vos critères)</li>
+                        <li>Proposition RDV automatique</li>
+                        <li>Dashboard simple et clair</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💼</div>
+                    <h3>Prospection LinkedIn</h3>
+                    <p>Luxo gère votre présence LinkedIn : publications, prospection ciblée et réponses personnalisées selon votre secteur.</p>
+                    <ul class="service-features">
+                        <li>Messages adaptés votre industrie</li>
+                        <li>Qualification des opportunités</li>
+                        <li>Relances automatiques</li>
+                        <li>Reporting hebdomadaire</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🎧</div>
+                    <h3>Support client</h3>
+                    <p>Luxo répond aux questions fréquentes de vos clients 24/7 et escalade vers vous uniquement si nécessaire.</p>
+                    <ul class="service-features">
+                        <li>Réponses personnalisées votre activité</li>
+                        <li>80% des tickets résolus</li>
+                        <li>Base de connaissances sur mesure</li>
+                        <li>Disponible 24/7</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2 style="color: white;">Investissement simple</h2>
+                <p style="color: rgba(255,255,255,0.7);">Tout inclus : setup, maintenance, évolutions</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Mise en place</h3>
+                    <div class="price">990€</div>
+                    <p style="opacity: 0.8; margin-bottom: 20px;">Configuration personnalisée unique</p>
+                    <ul class="pricing-features">
+                        <li>Configuration sur mesure</li>
+                        <li>Questions personnalisées votre métier</li>
+                        <li>Scoring adapté vos critères</li>
+                        <li>Intégration email / CRM</li>
+                        <li>Formation équipe 1h</li>
+                        <li>Dashboard personnalisé</li>
+                    </ul>
+                </div>
+                <div class="pricing-card featured">
+                    <h3>Abonnement mensuel</h3>
+                    <div class="price">199€<span>/mois</span></div>
+                    <p style="color: #64748b; margin-bottom: 20px;">Sans engagement • 1 mois offert</p>
+                    <ul class="pricing-features" style="color: #1e293b;">
+                        <li>Luxo actif 24/7</li>
+                        <li>Leads illimités</li>
+                        <li>Dashboard temps réel</li>
+                        <li><strong>Mises à jour incluses</strong></li>
+                        <li><strong>Amélioration constante</strong></li>
+                        <li><strong>Évolution selon vos besoins</strong></li>
+                        <li>Support prioritaire</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-gold btn-pricing">Choisir cet abonnement</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta" id="contact">
+        <div class="container">
+            <h2>Prêt à gagner 15h par semaine ?</h2>
+            <p style="color: #0f172a; opacity: 0.8; margin-bottom: 40px; font-size: 1.2rem;">Démo gratuite de 15 minutes. On configure Luxo avec vos vraies questions.</p>
+            
+            <form class="contact-form" action="mailto:contact@luxo-assistant.fr" method="post" enctype="text/plain">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nom">Nom *</label>
+                        <input type="text" id="nom" name="nom" required placeholder="Votre nom">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required placeholder="votre@email.com">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="entreprise">Entreprise</label>
+                    <input type="text" id="entreprise" name="entreprise" placeholder="Nom de votre entreprise">
+                </div>
+                <div class="form-group">
+                    <label for="activite">Votre activité *</label>
+                    <select id="activite" name="activite" required>
+                        <option value="">Sélectionnez votre secteur</option>
+                        <option value="artisan">Artisan / Bâtiment</option>
+                        <option value="consultant">Consultant / Coach</option>
+                        <option value="immobilier">Immobilier</option>
+                        <option value="marketing">Marketing / Communication</option>
+                        <option value="sante">Santé / Bien-être</option>
+                        <option value="juridique">Juridique / Finance</option>
+                        <option value="autre">Autre</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Votre besoin *</label>
+                    <textarea id="message" name="message" rows="4" required placeholder="Décrivez votre activité et ce que vous souhaitez automatiser..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-submit">📧 Envoyer ma demande</button>
+                <p class="form-note">Vous recevrez une réponse sous 24h ouvrées</p>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div style="font-size: 2rem; font-weight: 800; color: #d4af37; margin-bottom: 20px;">Luxo</div>
+            <p style="opacity: 0.7; margin-bottom: 30px;">Votre assistant personnel qui vous fait gagner 15h par semaine</p>
+            <p style="opacity: 0.5; font-size: 0.9rem;">© 2026 Luxo • Assistant IA personnalisé et multitâche</p>
+        </div>
+    </footer>
+</body>
+</html>
