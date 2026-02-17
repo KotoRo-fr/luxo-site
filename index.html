@@ -3,578 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luxo | Votre Assistant Personnel</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Luxo | Assistant IA Personnel - Gagnez 15h par semaine</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --navy: #0f172a;
-            --navy-light: #1e293b;
-            --gold: #d4af37;
-            --gold-light: #f0d878;
-            --gray-50: #f8fafc;
-            --gray-200: #e2e8f0;
-            --gray-600: #64748b;
-            --white: #ffffff;
-            --success: #10b981;
-        }
-        
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            line-height: 1.6;
-            color: var(--gray-600);
-        }
-        
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-        
-        header {
-            background: var(--white);
-            padding: 20px 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid var(--gray-200);
-        }
-        
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-        }
-        
-        .logo-icon {
-            width: 44px;
-            height: 44px;
-            background: var(--navy);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--gold);
-            font-size: 1.4rem;
-            font-weight: 700;
-        }
-        
-        .logo-text {
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: var(--navy);
-        }
-        
-        .nav-cta {
-            background: var(--gold);
-            color: var(--navy);
-            padding: 14px 28px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 700;
-        }
-        
-        .hero {
-            padding: 180px 0 120px;
-            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
-            color: var(--white);
-        }
-        
-        .hero-content {
-            display: grid;
-            grid-template-columns: 1.3fr 1fr;
-            gap: 80px;
-            align-items: center;
-        }
-        
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(212,175,55,0.2);
-            border: 1px solid rgba(212,175,55,0.3);
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--gold-light);
-            margin-bottom: 30px;
-        }
-        
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            line-height: 1.15;
-            margin-bottom: 20px;
-            color: var(--white);
-        }
-        
-        .hero h1 span {
-            color: var(--gold-light);
-        }
-        
-        .hero-subtitle {
-            font-size: 1.35rem;
-            color: var(--gold-light);
-            margin-bottom: 20px;
-            font-weight: 500;
-        }
-        
-        .hero p {
-            font-size: 1.15rem;
-            opacity: 0.9;
-            margin-bottom: 40px;
-        }
-        
-        .btn {
-            padding: 18px 36px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 700;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.05rem;
-        }
-        
-        .btn-gold {
-            background: var(--gold);
-            color: var(--navy);
-        }
-        
-        .btn-outline {
-            background: transparent;
-            color: var(--white);
-            border: 2px solid rgba(255,255,255,0.3);
-        }
-        
-        .hero-cta {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-        
-        .services {
-            padding: 100px 0;
-            background: var(--gray-50);
-        }
-        
-        .section-header {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 60px;
-        }
-        
-        .section-header h2 {
-            font-size: 2.8rem;
-            font-weight: 800;
-            color: var(--navy);
-            margin-bottom: 20px;
-        }
-        
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-        
-        .service-card {
-            background: var(--white);
-            padding: 45px 35px;
-            border-radius: 20px;
-            border: 1px solid var(--gray-200);
-        }
-        
-        .service-icon {
-            width: 65px;
-            height: 65px;
-            background: var(--gray-50);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            margin-bottom: 30px;
-        }
-        
-        .service-card h3 {
-            font-size: 1.35rem;
-            font-weight: 700;
-            color: var(--navy);
-            margin-bottom: 15px;
-        }
-        
-        .service-features {
-            list-style: none;
-            margin-top: 20px;
-        }
-        
-        .service-features li {
-            padding: 10px 0;
-            font-size: 0.95rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .service-features li::before {
-            content: '✓';
-            color: var(--gold);
-            font-weight: 700;
-        }
-        
-        .pricing {
-            padding: 100px 0;
-            background: var(--navy);
-            color: var(--white);
-        }
-        
-        .pricing .section-header h2 {
-            color: var(--white);
-        }
-        
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 40px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        
-        .pricing-card {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 20px;
-            padding: 50px 40px;
-        }
-        
-        .pricing-card.featured {
-            background: var(--white);
-            color: #1e293b;
-        }
-        
-        .price {
-            font-size: 4rem;
-            font-weight: 800;
-            margin: 25px 0;
-        }
-        
-        .price span {
-            font-size: 1rem;
-            opacity: 0.7;
-        }
-        
-        .pricing-features li {
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            list-style: none;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .pricing-card.featured .pricing-features li {
-            border-color: var(--gray-200);
-        }
-        
-        .pricing-features li::before {
-            content: '✓';
-            color: var(--gold);
-            font-weight: 700;
-        }
-        
-        .btn-pricing {
-            width: 100%;
-            text-align: center;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        
-        .cta {
-            padding: 100px 0;
-            background: var(--gold);
-            text-align: center;
-        }
-        
-        .cta h2 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--navy);
-            margin-bottom: 20px;
-        }
-        
-        footer {
-            background: var(--navy);
-            color: var(--white);
-            padding: 60px 0;
-            text-align: center;
-        }
-        
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-            background: var(--white);
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-        }
-        
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-        
-        .form-group label {
-            display: block;
-            font-weight: 600;
-            color: var(--navy);
-            margin-bottom: 8px;
-            font-size: 0.95rem;
-        }
-        
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 14px 18px;
-            border: 2px solid var(--gray-200);
-            border-radius: 10px;
-            font-family: inherit;
-            font-size: 1rem;
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
-        
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--gold);
-            box-shadow: 0 0 0 3px rgba(212,175,55,0.1);
-        }
-        
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-        
-        .btn-submit {
-            width: 100%;
-            background: var(--navy);
-            color: var(--white);
-            border: none;
-            cursor: pointer;
-            font-size: 1.1rem;
-            justify-content: center;
-        }
-        
-        .btn-submit:hover {
-            background: var(--navy-light);
-        }
-        
-        .form-note {
-            margin-top: 15px;
-            font-size: 0.9rem;
-            color: var(--gray-600);
-        }
-        
-        @media (max-width: 600px) {
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-            .contact-form {
-                padding: 25px;
-            }
-        }
-        
-        @media (max-width: 968px) {
-            .hero-content,
-            .services-grid,
-            .pricing-grid {
-                grid-template-columns: 1fr;
-            }
-            .hero h1 { font-size: 2.8rem; }
-        }
-    </style>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230f172a'/><text y='.9em' x='50%' text-anchor='middle' font-size='70' fill='%23d4af37'>L</text></svg>">
+    <style>:root{--navy:#0f172a;--navy-light:#1e293b;--gold:#d4af37;--gold-light:#f0d878;--gray-50:#f8fafc;--gray-200:#e2e8f0;--gray-600:#64748b;--white:#ffffff;--success:#10b981;--urgent:#ef4444}*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Plus Jakarta Sans',sans-serif;line-height:1.6;color:var(--gray-600)}.container{max-width:1200px;margin:0 auto;padding:0 24px}header{background:var(--white);padding:20px 0;position:fixed;width:100%;top:0;z-index:1000;border-bottom:1px solid var(--gray-200)}nav{display:flex;justify-content:space-between;align-items:center}.logo{display:flex;align-items:center;gap:12px;text-decoration:none}.logo-icon{width:44px;height:44px;background:var(--navy);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1.4rem;font-weight:700}.logo-text{font-size:1.6rem;font-weight:800;color:var(--navy)}.nav-cta{background:var(--gold);color:var(--navy);padding:14px 28px;border-radius:10px;text-decoration:none;font-weight:700}.hero{padding:180px 0 120px;background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 100%);color:var(--white)}.hero-content{display:grid;grid-template-columns:1.3fr 1fr;gap:80px;align-items:center}.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(212,175,55,0.2);border:1px solid rgba(212,175,55,0.3);padding:10px 20px;border-radius:50px;font-size:.9rem;font-weight:600;color:var(--gold-light);margin-bottom:30px}.hero h1{font-size:3.5rem;font-weight:800;line-height:1.15;margin-bottom:20px;color:var(--white)}.hero h1 span{color:var(--gold-light)}.hero-subtitle{font-size:1.35rem;color:var(--gold-light);margin-bottom:20px;font-weight:500}.hero p{font-size:1.15rem;opacity:.9;margin-bottom:40px}.btn{padding:18px 36px;border-radius:10px;text-decoration:none;font-weight:700;display:inline-flex;align-items:center;gap:10px;font-size:1.05rem;border:none;cursor:pointer}.btn-gold{background:var(--gold);color:var(--navy)}.btn-outline{background:transparent;color:var(--white);border:2px solid rgba(255,255,255,0.3)}.hero-cta{display:flex;gap:15px;flex-wrap:wrap}.urgency-banner{background:rgba(239,68,68,0.15);border:1px solid rgba(239,68,68,0.3);padding:12px 20px;border-radius:10px;display:inline-flex;align-items:center;gap:10px;margin-top:25px;font-weight:600;color:#fca5a5}.social-proof{padding:60px 0;background:rgba(212,175,55,0.05)}.social-proof-content{text-align:center}.social-proof-avatars{display:flex;justify-content:center;gap:0;margin-bottom:15px}.social-proof-avatar{width:48px;height:48px;border-radius:50%;border:3px solid var(--white);margin-left:-12px;background:linear-gradient(135deg,var(--navy-light),var(--navy));display:flex;align-items:center;justify-content:center;color:var(--gold);font-weight:700}.social-proof-avatar:first-child{margin-left:0}.social-proof-text{font-size:1.1rem;color:var(--navy);font-weight:600}.social-proof-text span{color:var(--gold);font-weight:800}.trust-badges{display:flex;justify-content:center;gap:30px;margin-top:20px;flex-wrap:wrap}.trust-badge{display:flex;align-items:center;gap:8px;font-size:.9rem}.trust-badge-icon{width:24px;height:24px;background:var(--success);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--white);font-size:12px}.how-it-works{padding:100px 0;background:var(--gray-50)}.section-header{text-align:center;max-width:700px;margin:0 auto 60px}.section-header h2{font-size:2.8rem;font-weight:800;color:var(--navy);margin-bottom:20px}.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px}.step-card{background:var(--white);padding:40px 30px;border-radius:20px;border:1px solid var(--gray-200);text-align:center;position:relative}.step-number{width:50px;height:50px;background:var(--gold);color:var(--navy);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:800;margin:0 auto 25px}.step-icon{font-size:3rem;margin-bottom:20px}.step-card h3{font-size:1.2rem;font-weight:700;color:var(--navy);margin-bottom:12px}.step-arrow{position:absolute;right:-25px;top:50%;transform:translateY(-50%);font-size:2rem;color:var(--gold);z-index:10}.services{padding:100px 0;background:var(--white)}.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}.service-card{background:var(--white);padding:45px 35px;border-radius:20px;border:1px solid var(--gray-200)}.service-icon{width:65px;height:65px;background:var(--gray-50);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:2rem;margin-bottom:30px}.service-card h3{font-size:1.35rem;font-weight:700;color:var(--navy);margin-bottom:15px}.service-features{list-style:none;margin-top:20px}.service-features li{padding:10px 0;font-size:.95rem;display:flex;align-items:center;gap:10px}.service-features li::before{content:'✓';color:var(--gold);font-weight:700}.testimonials{padding:100px 0;background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 100%);color:var(--white)}.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}.testimonial-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:35px}.testimonial-stars{color:var(--gold);font-size:1.2rem;margin-bottom:20px}.testimonial-text{font-size:1rem;line-height:1.7;margin-bottom:25px;color:rgba(255,255,255,0.9);font-style:italic}.testimonial-author{display:flex;align-items:center;gap:15px}.testimonial-avatar{width:55px;height:55px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-light));display:flex;align-items:center;justify-content:center;color:var(--navy);font-weight:700;font-size:1.3rem}.testimonial-name{font-weight:700;color:var(--white)}.testimonial-role{font-size:.9rem;color:var(--gold-light)}.pricing{padding:100px 0;background:var(--navy);color:var(--white)}.pricing-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:40px;max-width:900px;margin:0 auto}.pricing-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:50px 40px}.pricing-card.featured{background:var(--white);color:#1e293b}.price{font-size:4rem;font-weight:800;margin:25px 0}.price span{font-size:1rem;opacity:.7}.pricing-features li{padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.1);list-style:none;display:flex;align-items:center;gap:10px}.pricing-card.featured .pricing-features li{border-color:var(--gray-200)}.pricing-features li::before{content:'✓';color:var(--gold);font-weight:700}.btn-pricing{width:100%;text-align:center;justify-content:center;margin-top:20px}.availability-notice{background:var(--urgent);color:var(--white);padding:15px 25px;border-radius:10px;text-align:center;margin-top:30px;font-weight:600}.faq{padding:100px 0;background:var(--gray-50)}.faq-grid{max-width:800px;margin:0 auto}.faq-item{background:var(--white);border-radius:16px;margin-bottom:20px;border:1px solid var(--gray-200);overflow:hidden}.faq-question{padding:25px 30px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:700;color:var(--navy);font-size:1.1rem}.faq-icon{font-size:1.5rem;color:var(--gold);transition:transform .3s}.faq-item.active .faq-icon{transform:rotate(45deg)}.faq-answer{padding:0 30px;max-height:0;overflow:hidden;transition:all .3s}.faq-item.active .faq-answer{padding:0 30px 25px;max-height:500px}.faq-answer p{color:var(--gray-600);line-height:1.7}.cta{padding:100px 0;background:var(--gold);text-align:center}.cta h2{font-size:2.5rem;font-weight:800;color:var(--navy);margin-bottom:20px}.contact-form{max-width:600px;margin:0 auto;background:var(--white);padding:40px;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,0.1)}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:20px}.form-group{margin-bottom:20px;text-align:left}.form-group label{display:block;font-weight:600;color:var(--navy);margin-bottom:8px;font-size:.95rem}.form-group input,.form-group select,.form-group textarea{width:100%;padding:14px 18px;border:2px solid var(--gray-200);border-radius:10px;font-family:inherit;font-size:1rem}.form-group textarea{resize:vertical;min-height:120px}.btn-submit{width:100%;background:var(--navy);color:var(--white);border:none;cursor:pointer;font-size:1.1rem;justify-content:center}.footer-content{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}.footer-links h4{color:var(--gold);font-size:1rem;margin-bottom:20px}.footer-links a{display:block;color:rgba(255,255,255,0.7);text-decoration:none;padding:8px 0}.footer-legal{display:flex;gap:25px}.footer-legal a{color:rgba(255,255,255,0.5);text-decoration:none;font-size:.9rem}.sticky-cta-mobile{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--white);padding:15px 20px;box-shadow:0 -5px 30px rgba(0,0,0,0.1);z-index:999}.chat-widget{position:fixed;bottom:30px;right:30px;z-index:1001}.chat-button{width:65px;height:65px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(212,175,55,0.4);cursor:pointer;border:none;font-size:1.8rem}.chat-tooltip{position:absolute;bottom:80px;right:0;background:var(--navy);color:var(--white);padding:12px 18px;border-radius:12px;font-size:.9rem;white-space:nowrap;opacity:0;pointer-events:none}.chat-widget:hover .chat-tooltip{opacity:1}.cookie-banner{position:fixed;bottom:0;left:0;right:0;background:var(--navy);color:var(--white);padding:20px 30px;z-index:1002;transform:translateY(100%);transition:transform .5s}.cookie-banner.show{transform:translateY(0)}.cookie-content{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap}.cookie-btn{padding:12px 24px;border-radius:8px;border:none;cursor:pointer;font-weight:600}.cookie-btn-accept{background:var(--gold);color:var(--navy)}.exit-popup{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);z-index:2000;align-items:center;justify-content:center;padding:20px}.exit-popup.show{display:flex}.exit-popup-content{background:var(--white);border-radius:24px;max-width:550px;width:100%;padding:50px;text-align:center;position:relative}@media(max-width:968px){.hero-content,.services-grid,.pricing-grid,.steps-grid,.testimonials-grid,.footer-content{grid-template-columns:1fr}.hero h1{font-size:2.4rem}.step-arrow{display:none}}@media(max-width:600px){.form-row{grid-template-columns:1fr}.sticky-cta-mobile{display:block}.chat-widget{bottom:90px;right:20px}}</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RXCXE575L6"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RXCXE575L6');</script>
+<script>_linkedin_partner_id='8662978';window._linkedin_data_partner_ids=window._linkedin_data_partner_ids||[];window._linkedin_data_partner_ids.push(_linkedin_partner_id);(function(){var s=document.getElementsByTagName('script')[0];var b=document.createElement('script');b.type='text/javascript';b.async=true;b.src='https://snap.licdn.com/li.lms-analytics/insight.min.js';s.parentNode.insertBefore(b,s);})();</script>
+<noscript><img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=8662978&fmt=gif"/></noscript>
 </head>
 <body>
-    <header>
-        <nav class="container">
-            <a href="#" class="logo">
-                <div class="logo-icon">L</div>
-                <span class="logo-text">Luxo</span>
-            </a>
-            <div style="display: flex; gap: 15px; align-items: center;">
-                <a href="demo.html" style="color: var(--navy); text-decoration: none; font-weight: 600;">Démo</a>
-                <a href="#pricing" class="nav-cta">Commencer maintenant</a>
-            </div>
-        </nav>
-    </header>
+    <header><nav class="container"><a href="#" class="logo"><div class="logo-icon">L</div><span class="logo-text">Luxo</span></a><div style="display:flex;gap:15px;align-items:center;"><a href="demo.html" style="color:var(--navy);text-decoration:none;font-weight:600;">Démo</a><a href="comment-ca-marche.html" style="color:var(--navy);text-decoration:none;font-weight:600;">Comment ça marche</a><a href="#pricing" class="nav-cta">Commencer</a></div></nav></header>
+    
+    <section class="hero"><div class="container"><div class="hero-content"><div><span class="hero-badge">✓ Sans engagement • Évolution comprise</span><h1>Votre assistant personnel <span>qui vous fait gagner 15h par semaine</span></h1><p class="hero-subtitle">Luxo est votre assistant IA personnalisé et multitâche.</p><p>Il qualifie vos leads, gère vos conversations et vous libère du temps. Vous gardez le contrôle via une interface simple.</p><div class="hero-cta"><a href="#contact" class="btn btn-gold">Essayer Luxo gratuitement</a><a href="demo.html" class="btn btn-outline">Voir la démo</a></div><div class="urgency-banner"><span>🔥</span><span>Plus que <strong>3 places disponibles</strong> ce mois-ci</span></div></div><div style="background:rgba(255,255,255,0.05);padding:40px;border-radius:20px;border:1px solid rgba(255,255,255,0.1);text-align:center;"><div style="font-size:4rem;margin-bottom:20px;">🤵</div><div style="font-size:1.5rem;font-weight:700;color:var(--gold-light);margin-bottom:10px;">Luxo travaille pour vous</div><div style="opacity:.9;font-size:.95rem;">✓ 12 devis traités<br>✓ 8 prospects qualifiés<br>✓ 3 RDV confirmés</div></div></div></div></section>
 
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div>
-                    <span class="hero-badge">✓ Sans engagement • Évolution comprise</span>
-                    <h1>Votre assistant personnel <span>qui vous fait gagner 15h par semaine</span></h1>
-                    <p class="hero-subtitle">Luxo est votre assistant IA personnalisé et multitâche.</p>
-                    <p>Il qualifie vos leads, gère vos conversations et vous libère du temps. Vous gardez le contrôle via une interface simple. Pas de jargon technique, juste des résultats.</p>
-                    <div class="hero-cta">
-                        <a href="#contact" class="btn btn-gold">Essayer Luxo gratuitement</a>
-                        <a href="demo.html" class="btn btn-outline">Voir la démo</a>
-                    </div>
-                </div>
-                <div style="background: rgba(255,255,255,0.05); padding: 40px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); text-align: center;">
-                    <div style="font-size: 4rem; margin-bottom: 20px;">🤵</div>
-                    <div style="font-size: 1.5rem; font-weight: 700; color: var(--gold-light); margin-bottom: 10px;">Luxo travaille pour vous</div>
-                    <div style="opacity: 0.9; font-size: 0.95rem;">✓ 12 devis traités<br>✓ 8 prospects qualifiés<br>✓ 3 RDV confirmés</div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <section class="social-proof"><div class="container"><div class="social-proof-content"><div class="social-proof-avatars"><div class="social-proof-avatar">T</div><div class="social-proof-avatar">M</div><div class="social-proof-avatar">S</div><div class="social-proof-avatar">P</div><div class="social-proof-avatar">J</div><div class="social-proof-avatar">+42</div></div><p class="social-proof-text"><span>47 entrepreneurs</span> nous font confiance pour automatiser leur prospection</p><div class="trust-badges"><div class="trust-badge"><span class="trust-badge-icon">✓</span> Paiement sécurisé SSL</div><div class="trust-badge"><span class="trust-badge-icon">✓</span> Conforme RGPD</div><div class="trust-badge"><span class="trust-badge-icon">✓</span> Garantie 30 jours</div></div></div></div></section>
 
-    <section class="services" id="services">
-        <div class="container">
-            <div class="section-header">
-                <h2>Ce que Luxo fait pour vous</h2>
-                <p>Un assistant multitâche qui s'adapte à VOTRE métier avec des questions personnalisées</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">📧</div>
-                    <h3>Qualification de devis</h3>
-                    <p>Luxo répond à vos demandes de devis et pose les questions adaptées à VOTRE activité pour qualifier chaque prospect.</p>
-                    <ul class="service-features">
-                        <li>Questions personnalisées votre métier</li>
-                        <li>Scoring sur mesure (vos critères)</li>
-                        <li>Proposition RDV automatique</li>
-                        <li>Dashboard simple et clair</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">💼</div>
-                    <h3>Prospection LinkedIn</h3>
-                    <p>Luxo gère votre présence LinkedIn : publications, prospection ciblée et réponses personnalisées selon votre secteur.</p>
-                    <ul class="service-features">
-                        <li>Messages adaptés votre industrie</li>
-                        <li>Qualification des opportunités</li>
-                        <li>Relances automatiques</li>
-                        <li>Reporting hebdomadaire</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🎧</div>
-                    <h3>Support client</h3>
-                    <p>Luxo répond aux questions fréquentes de vos clients 24/7 et escalade vers vous uniquement si nécessaire.</p>
-                    <ul class="service-features">
-                        <li>Réponses personnalisées votre activité</li>
-                        <li>80% des tickets résolus</li>
-                        <li>Base de connaissances sur mesure</li>
-                        <li>Disponible 24/7</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+    <section class="how-it-works" id="how-it-works"><div class="container"><div class="section-header"><h2>Comment ça marche ?</h2><p>En 4 étapes simples, Luxo travaille pour vous 24/7</p></div><div class="steps-grid"><div class="step-card"><span class="step-arrow">→</span><div class="step-number">1</div><div class="step-icon">📞</div><h3>On discute de vos besoins</h3><p>Appel de 30 min pour comprendre votre activité</p></div><div class="step-card"><span class="step-arrow">→</span><div class="step-number">2</div><div class="step-icon">⚙️</div><h3>Configuration sur mesure</h3><p>Questions et scoring adaptés à votre métier</p></div><div class="step-card"><span class="step-arrow">→</span><div class="step-number">3</div><div class="step-icon">🚀</div><h3>Luxo se met au travail</h3><p>Qualification automatique 24/7</p></div><div class="step-card"><div class="step-number">4</div><div class="step-icon">📈</div><h3>Suivez vos résultats</h3><p>Dashboard en temps réel</p></div></div></div></section>
 
-    <section class="pricing" id="pricing">
-        <div class="container">
-            <div class="section-header">
-                <h2 style="color: white;">Investissement simple</h2>
-                <p style="color: rgba(255,255,255,0.7);">Tout inclus : setup, maintenance, évolutions</p>
-            </div>
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <h3>Mise en place</h3>
-                    <div class="price">990€</div>
-                    <p style="opacity: 0.8; margin-bottom: 20px;">Configuration personnalisée unique</p>
-                    <ul class="pricing-features">
-                        <li>Configuration sur mesure</li>
-                        <li>Questions personnalisées votre métier</li>
-                        <li>Scoring adapté vos critères</li>
-                        <li>Intégration email / CRM</li>
-                        <li>Formation équipe 1h</li>
-                        <li>Dashboard personnalisé</li>
-                    </ul>
-                </div>
-                <div class="pricing-card featured">
-                    <h3>Abonnement mensuel</h3>
-                    <div class="price">199€<span>/mois</span></div>
-                    <p style="color: #64748b; margin-bottom: 20px;">Sans engagement • 1 mois offert</p>
-                    <ul class="pricing-features" style="color: #1e293b;">
-                        <li>Luxo actif 24/7</li>
-                        <li>Leads illimités</li>
-                        <li>Dashboard temps réel</li>
-                        <li><strong>Mises à jour incluses</strong></li>
-                        <li><strong>Amélioration constante</strong></li>
-                        <li><strong>Évolution selon vos besoins</strong></li>
-                        <li>Support prioritaire</li>
-                    </ul>
-                    <a href="#contact" class="btn btn-gold btn-pricing">Choisir cet abonnement</a>
-                </div>
-            </div>
-        </div>
-    </section>
+    <section class="services" id="services"><div class="container"><div class="section-header"><h2>Ce que Luxo fait pour vous</h2></div><div class="services-grid"><div class="service-card"><div class="service-icon">📧</div><h3>Qualification de devis</h3><p>Luxo répond aux demandes et qualifie chaque prospect.</p><ul class="service-features"><li>Questions personnalisées</li><li>Scoring sur mesure</li><li>Proposition RDV</li></ul></div><div class="service-card"><div class="service-icon">💼</div><h3>Prospection LinkedIn</h3><p>Gérez votre présence LinkedIn automatiquement.</p><ul class="service-features"><li>Messages adaptés</li><li>Qualification opportunités</li><li>Relances auto</li></ul></div><div class="service-card"><div class="service-icon">🎧</div><h3>Support client</h3><p>Réponses 24/7 aux questions fréquentes.</p><ul class="service-features"><li>80% tickets résolus</li><li>Base connaissances perso</li><li>Disponible 24/7</li></ul></div></div></div></section>
 
-    <section class="cta" id="contact">
-        <div class="container">
-            <h2>Prêt à gagner 15h par semaine ?</h2>
-            <p style="color: #0f172a; opacity: 0.8; margin-bottom: 40px; font-size: 1.2rem;">Démo gratuite de 15 minutes. On configure Luxo avec vos vraies questions.</p>
-            
-            <form class="contact-form" action="mailto:contact@luxo-assistant.fr" method="post" enctype="text/plain">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="nom">Nom *</label>
-                        <input type="text" id="nom" name="nom" required placeholder="Votre nom">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email *</label>
-                        <input type="email" id="email" name="email" required placeholder="votre@email.com">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="entreprise">Entreprise</label>
-                    <input type="text" id="entreprise" name="entreprise" placeholder="Nom de votre entreprise">
-                </div>
-                <div class="form-group">
-                    <label for="activite">Votre activité *</label>
-                    <select id="activite" name="activite" required>
-                        <option value="">Sélectionnez votre secteur</option>
-                        <option value="artisan">Artisan / Bâtiment</option>
-                        <option value="consultant">Consultant / Coach</option>
-                        <option value="immobilier">Immobilier</option>
-                        <option value="marketing">Marketing / Communication</option>
-                        <option value="sante">Santé / Bien-être</option>
-                        <option value="juridique">Juridique / Finance</option>
-                        <option value="autre">Autre</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="message">Votre besoin *</label>
-                    <textarea id="message" name="message" rows="4" required placeholder="Décrivez votre activité et ce que vous souhaitez automatiser..."></textarea>
-                </div>
-                <button type="submit" class="btn btn-submit">📧 Envoyer ma demande</button>
-                <p class="form-note">Vous recevrez une réponse sous 24h ouvrées</p>
-            </form>
-        </div>
-    </section>
+    <section class="testimonials"><div class="container"><div class="section-header"><h2>Ils nous font confiance</h2><p style="color:rgba(255,255,255,0.7)">Découvrez ce que nos clients disent de Luxo</p></div><div class="testimonials-grid"><div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"Luxo nous fait gagner 12h par semaine. La qualification est excellente, je ne perds plus de temps avec des prospects non qualifiés."</p><div class="testimonial-author"><div class="testimonial-avatar">TM</div><div class="testimonial-info"><div class="testimonial-name">Thomas Martin</div><div class="testimonial-role">Consultant digital</div></div></div></div><div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"Le ROI est immédiat. En 2 mois, Luxo a qualifié 47 leads et généré 8 nouveaux clients. Je recommande à 100%."</p><div class="testimonial-author"><div class="testimonial-avatar">SL</div><div class="testimonial-info"><div class="testimonial-name">Sophie Laurent</div><div class="testimonial-role">Coach en entreprise</div></div></div></div><div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">"Support client géré 24/7, prospects qualifiés automatiquement. Luxo est devenu indispensable pour mon activité."</p><div class="testimonial-author"><div class="testimonial-avatar">PD</div><div class="testimonial-info"><div class="testimonial-name">Pierre Dubois</div><div class="testimonial-role">Artisan plaquiste</div></div></div></div></div></div></section>
 
-    <footer>
-        <div class="container">
-            <div style="font-size: 2rem; font-weight: 800; color: #d4af37; margin-bottom: 20px;">Luxo</div>
-            <p style="opacity: 0.7; margin-bottom: 30px;">Votre assistant personnel qui vous fait gagner 15h par semaine</p>
-            <p style="opacity: 0.5; font-size: 0.9rem;">© 2026 Luxo • Assistant IA personnalisé et multitâche</p>
-        </div>
-    </footer>
+    <section class="pricing" id="pricing"><div class="container"><div class="section-header"><h2 style="color:white;">Investissement simple</h2><p style="color:rgba(255,255,255,0.7)">Tout inclus : setup, maintenance, évolutions</p></div><div class="pricing-grid"><div class="pricing-card"><h3>Mise en place</h3><div class="price">990€</div><ul class="pricing-features"><li>Configuration sur mesure</li><li>Questions personnalisées</li><li>Intégration email / CRM</li><li>Formation équipe 1h</li></ul></div><div class="pricing-card featured"><h3>Abonnement mensuel</h3><div class="price">199€<span>/mois</span></div><p style="color:#64748b;margin-bottom:20px;">Sans engagement • 1 mois offert</p><ul class="pricing-features" style="color:#1e293b;"><li>Luxo actif 24/7</li><li>Leads illimités</li><li>Mises à jour incluses</li><li>Support prioritaire</li></ul><a href="#contact" class="btn btn-gold btn-pricing">Choisir cet abonnement</a></div></div><div class="availability-notice">🔥 <strong>3 places disponibles</strong> ce mois-ci pour une configuration personnalisée</div></div></section>
+
+    <section class="faq" id="faq"><div class="container"><div class="section-header"><h2>Questions fréquentes</h2></div><div class="faq-grid"><div class="faq-item"><div class="faq-question">Qu'est-ce que Luxo et comment fonctionne-t-il ?<span class="faq-icon">+</span></div><div class="faq-answer"><p>Luxo est un assistant IA personnel qui qualifie automatiquement vos leads, gère vos conversations et vous libère du temps. Il répond aux demandes de devis, prospecte sur LinkedIn et gère votre support client 24/7.</p></div></div><div class="faq-item"><div class="faq-question">Combien de temps faut-il pour configurer Luxo ?<span class="faq-icon">+</span></div><div class="faq-answer"><p>La mise en place prend environ 1 semaine. Nous configurons l'assistant avec vos questions personnalisées, votre scoring sur mesure et intégrons vos outils existants.</p></div></div><div class="faq-item"><div class="faq-question">Mes données sont-elles sécurisées ?<span class="faq-icon">+</span></div><div class="faq-answer"><p>Oui, Luxo est 100% conforme RGPD. Vos données sont hébergées en France, chiffrées et jamais partagées avec des tiers.</p></div></div><div class="faq-item"><div class="faq-question">Puis-je résilier à tout moment ?<span class="faq-icon">+</span></div><div class="faq-answer"><p>Oui, l'abonnement est sans engagement. Vous pouvez résilier à tout moment avec un préavis de 30 jours.</p></div></div></div></div></section>
+
+    <section class="cta" id="contact"><div class="container"><h2>Prêt à gagner 15h par semaine ?</h2><p style="color:#0f172a;opacity:.8;margin-bottom:40px;font-size:1.2rem;">Démo gratuite de 15 minutes. On configure Luxo avec vos vraies questions.</p><form class="contact-form"><div class="form-row"><div class="form-group"><label>Nom *</label><input type="text" required placeholder="Votre nom"></div><div class="form-group"><label>Email *</label><input type="email" required placeholder="votre@email.com"></div></div><div class="form-group"><label>Entreprise</label><input type="text" placeholder="Nom de votre entreprise"></div><div class="form-group"><label>Votre activité *</label><select required><option value="">Sélectionnez votre secteur</option><option>Artisan / Bâtiment</option><option>Consultant / Coach</option><option>Immobilier</option><option>Marketing / Communication</option><option>Santé / Bien-être</option><option>Autre</option></select></div><div class="form-group"><label>Votre besoin *</label><textarea rows="4" required placeholder="Décrivez votre activité..."></textarea></div><button type="submit" class="btn btn-submit">📧 Envoyer ma demande</button><p class="form-note">Vous recevrez une réponse sous 24h ouvrées</p></form></div></section>
+
+    <footer style="background:var(--navy);color:var(--white);padding:60px 0 30px;"><div class="container"><div class="footer-content"><div class="footer-brand"><div style="font-size:2rem;font-weight:800;color:#d4af37;margin-bottom:20px;">Luxo</div><p style="opacity:.7;">Votre assistant personnel qui vous fait gagner 15h par semaine</p></div><div class="footer-links"><h4>Produit</h4><a href="#services">Services</a><a href="#pricing">Tarifs</a><a href="demo.html">Démo</a></div><div class="footer-links"><h4>Ressources</h4><a href="comment-ca-marche.html">Comment ça marche</a><a href="#faq">FAQ</a><a href="#contact">Contact</a></div><div class="footer-links"><h4>Légal</h4><a href="mentions-legales.html">Mentions légales</a><a href="mentions-legales.html#privacy">Politique de confidentialité</a><a href="mentions-legales.html#cookies">Cookies</a></div></div><div style="border-top:1px solid rgba(255,255,255,0.1);padding-top:30px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;"><p style="opacity:.5;font-size:.9rem;">© 2026 Luxo • Assistant IA personnalisé</p><div class="footer-legal"><a href="mentions-legales.html">Mentions légales</a></div></div></div></footer>
+
+    <div class="sticky-cta-mobile"><a href="#contact" class="btn btn-gold">Essayer Luxo gratuitement</a></div>
+
+    <div class="chat-widget"><div class="chat-tooltip">Une question ? Discutons !</div><button class="chat-button" onclick="alert('Chat en cours de développement. Contactez-nous par email !')">💬</button></div>
+
+    <div class="cookie-banner" id="cookieBanner"><div class="cookie-content"><p class="cookie-text">Nous utilisons des cookies pour améliorer votre expérience. En continuant, vous acceptez notre utilisation des cookies.</p><div class="cookie-buttons"><button class="cookie-btn cookie-btn-decline" onclick="hideCookieBanner()">Refuser</button><button class="cookie-btn cookie-btn-accept" onclick="acceptCookies()">Accepter</button></div></div></div>
+
+    <div class="exit-popup" id="exitPopup"><div class="exit-popup-content"><button class="exit-popup-close" onclick="closeExitPopup()">×</button><div class="exit-popup-icon">🎁</div><h3>Attendez ! Une offre spéciale vous attend</h3><p>Obtenez <strong>1 mois gratuit</strong> supplémentaire en réservant votre appel découverte aujourd'hui.</p><div><a href="#contact" class="btn btn-gold" onclick="closeExitPopup()" style="margin-right:10px;">Profiter de l'offre</a><button class="btn btn-outline" style="color:#64748b;border-color:#e2e8f0;" onclick="closeExitPopup()">Non merci</button></div></div></div>
+
+    <script>
+        // Cookie Banner
+        function showCookieBanner(){setTimeout(()=>{document.getElementById('cookieBanner').classList.add('show')},2000)}
+        function hideCookieBanner(){document.getElementById('cookieBanner').classList.remove('show')}
+        function acceptCookies(){hideCookieBanner();localStorage.setItem('cookiesAccepted','true')}
+        if(!localStorage.getItem('cookiesAccepted'))showCookieBanner();
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(q=>{q.addEventListener('click',()=>{const item=q.parentElement;item.classList.toggle('active')})});
+
+        // Exit Intent Popup
+        let exitPopupShown=false;
+        document.addEventListener('mouseout',e=>{if(e.clientY<10&&!exitPopupShown&&!localStorage.getItem('exitPopupShown')){document.getElementById('exitPopup').classList.add('show');exitPopupShown=true;localStorage.setItem('exitPopupShown','true')}});
+        function closeExitPopup(){document.getElementById('exitPopup').classList.remove('show')}
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',function(e){e.preventDefault();const t=document.querySelector(this.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth'})})});
+    </script>
 </body>
 </html>
